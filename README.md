@@ -11,3 +11,5 @@ The data comes from the Kaggle. Motivated by Gregory Smith's web scrape of VGCha
 4. Tunning.
 5. Identifying the predictor importance.
 6. Model validation.
+
+To check the results, go to MD files or [click here.](https://github.com/ali-unlu/game-sales-/blob/main/game_sales_descriptive.md) 
