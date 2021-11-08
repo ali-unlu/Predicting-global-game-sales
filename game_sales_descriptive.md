@@ -1,11 +1,3 @@
----
-title: "Game Sale  Prediction"
-author: "Ali Unlu"
-output: 
-  html_document: 
-    keep_md: yes
----
-
 
 
 # Data
