@@ -557,10 +557,6 @@ game <- game %>%
         mutate(Age = 2018 - as.numeric(game$Year_of_Release)) 
 ```
 
-```
-## Warning in mask$eval_all_mutate(quo): NAs introduced by coercion
-```
-
 The distribution of user and critic counts are so skewed, which leads me to take their log. Moreover, the value of global sales are not in their true unit, I also multiply it with 1000000. Nevertheless, this one also so skewed but I will take its log in modeling stage. 
 
 
@@ -608,18 +604,18 @@ s.t
 
 ```
 ##     name               statistic p.value     
-## s.t "NA_Sales"         0.3077091 2.419903e-87
-##     "EU_Sales"         0.2608094 7.879314e-89
-##     "JP_Sales"         0.2097699 2.335325e-90
-##     "Other_Sales"      0.2576479 6.298046e-89
-##     "Global_Sales"     0.3771554 5.692853e-85
-##     "Critic_Score"     0.9649777 3.41328e-33 
-##     "Critic_Count"     0.9206797 2.161182e-45
-##     "User_Score"       0.9137344 9.326539e-47
-##     "User_Count"       0.2738463 2.002176e-88
-##     "Age"              0.9812175 5.07078e-25 
-##     "Critic.Count.Log" 0.9783622 6.157508e-27
-##     "User.Count.Log"   0.9447311 9.345529e-40
+## s.t "NA_Sales"         0.301268  1.494323e-87
+##     "EU_Sales"         0.3588133 1.280918e-85
+##     "JP_Sales"         0.2212251 5.054568e-90
+##     "Other_Sales"      0.2293389 8.786447e-90
+##     "Global_Sales"     0.3649317 2.098002e-85
+##     "Critic_Score"     0.9625661 4.109953e-34
+##     "Critic_Count"     0.9187605 8.872664e-46
+##     "User_Score"       0.9135635 8.65544e-47 
+##     "User_Count"       0.2851841 4.559314e-88
+##     "Age"              0.9800762 1.020473e-25
+##     "Critic.Count.Log" 0.9774761 1.968921e-27
+##     "User.Count.Log"   0.9425133 2.375158e-40
 ```
 
 ![](game_sales_descriptive_files/figure-html/unnamed-chunk-6-2.png)<!-- -->
@@ -690,32 +686,6 @@ table(game$Rating)
 ```r
 library(ggmosaic)
 library(plotly)
-```
-
-```
-## 
-## Attaching package: 'plotly'
-```
-
-```
-## The following object is masked from 'package:ggplot2':
-## 
-##     last_plot
-```
-
-```
-## The following object is masked from 'package:stats':
-## 
-##     filter
-```
-
-```
-## The following object is masked from 'package:graphics':
-## 
-##     layout
-```
-
-```r
 p <- ggplot(game) +
         geom_mosaic(aes(x = product(Rating), fill = Platform.type), na.rm = TRUE) +
         labs(x = "Rating Type", y = "Platform Type", title="Mosaic Plot") +
@@ -724,8 +694,8 @@ ggplotly(p)
 ```
 
 ```{=html}
-<div id="htmlwidget-5a58caaaaaff6eb64513" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5a58caaaaaff6eb64513">{"x":{"data":[{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0,0.302027230845119,0.302027230845119,0,0],"text":"Nintendo<br>E<br>Frequency: 666","key":["Nintendo","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(248,118,109,0.8)","hoveron":"fills","name":"Nintendo","legendgroup":"Nintendo","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0,0.390438493265526,0.390438493265526,0,0],"text":"Nintendo<br>E10+<br>Frequency: 384","key":["Nintendo","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(248,118,109,0.8)","hoveron":"fills","name":"Nintendo","legendgroup":"Nintendo","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0,0.0645633059247653,0.0645633059247653,0,0],"text":"Nintendo<br>M<br>Frequency: 98","key":["Nintendo","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(248,118,109,0.8)","hoveron":"fills","name":"Nintendo","legendgroup":"Nintendo","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0,0.164152395878373,0.164152395878373,0,0],"text":"Nintendo<br>T<br>Frequency: 413","key":["Nintendo","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(248,118,109,0.8)","hoveron":"fills","name":"Nintendo","legendgroup":"Nintendo","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0.311561856737575,0.391376860684633,0.391376860684633,0.311561856737575,0.311561856737575],"text":"Others<br>E<br>Frequency: 176","key":["Others","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(163,165,0,0.8)","hoveron":"fills","name":"Others","legendgroup":"Others","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0.399973119157982,0.418274923529804,0.418274923529804,0.399973119157982,0.399973119157982],"text":"Others<br>E10+<br>Frequency: 18","key":["Others","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(163,165,0,0.8)","hoveron":"fills","name":"Others","legendgroup":"Others","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0.0740979318172212,0.078709596526133,0.078709596526133,0.0740979318172212,0.0740979318172212],"text":"Others<br>M<br>Frequency: 7","key":["Others","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(163,165,0,0.8)","hoveron":"fills","name":"Others","legendgroup":"Others","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0.173687021770829,0.195150046897783,0.195150046897783,0.173687021770829,0.173687021770829],"text":"Others<br>T<br>Frequency: 54","key":["Others","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(163,165,0,0.8)","hoveron":"fills","name":"Others","legendgroup":"Others","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0.400911486577089,0.447167909319135,0.447167909319135,0.400911486577089,0.400911486577089],"text":"PC<br>E<br>Frequency: 102","key":["PC","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,191,125,0.8)","hoveron":"fills","name":"PC","legendgroup":"PC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0.427809549422259,0.493899398542726,0.493899398542726,0.427809549422259,0.427809549422259],"text":"PC<br>E10+<br>Frequency: 65","key":["PC","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,191,125,0.8)","hoveron":"fills","name":"PC","legendgroup":"PC","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0.0882442224185889,0.252287724207023,0.252287724207023,0.0882442224185889,0.0882442224185889],"text":"PC<br>M<br>Frequency: 249","key":["PC","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,191,125,0.8)","hoveron":"fills","name":"PC","legendgroup":"PC","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0.204684672790239,0.304447993287749,0.304447993287749,0.204684672790239,0.204684672790239],"text":"PC<br>T<br>Frequency: 251","key":["PC","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,191,125,0.8)","hoveron":"fills","name":"PC","legendgroup":"PC","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0.45670253521159,0.811335109567271,0.811335109567271,0.45670253521159,0.45670253521159],"text":"Playstation<br>E<br>Frequency: 782","key":["Playstation","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,176,246,0.8)","hoveron":"fills","name":"Playstation","legendgroup":"Playstation","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0.503434024435182,0.812531164937057,0.812531164937057,0.503434024435182,0.503434024435182],"text":"Playstation<br>E10+<br>Frequency: 304","key":["Playstation","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,176,246,0.8)","hoveron":"fills","name":"Playstation","legendgroup":"Playstation","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0.261822350099479,0.670942890704369,0.670942890704369,0.261822350099479,0.261822350099479],"text":"Playstation<br>M<br>Frequency: 621","key":["Playstation","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,176,246,0.8)","hoveron":"fills","name":"Playstation","legendgroup":"Playstation","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0.313982619180205,0.767488390844185,0.767488390844185,0.313982619180205,0.313982619180205],"text":"Playstation<br>T<br>Frequency: 1141","key":["Playstation","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,176,246,0.8)","hoveron":"fills","name":"Playstation","legendgroup":"Playstation","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0.820869735459727,1,1,0.820869735459727,0.820869735459727],"text":"Xbox<br>E<br>Frequency: 395","key":["Xbox","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(231,107,243,0.8)","hoveron":"fills","name":"Xbox","legendgroup":"Xbox","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0.822065790829513,1,1,0.822065790829513,0.822065790829513],"text":"Xbox<br>E10+<br>Frequency: 175","key":["Xbox","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(231,107,243,0.8)","hoveron":"fills","name":"Xbox","legendgroup":"Xbox","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0.680477516596825,1,1,0.680477516596825,0.680477516596825],"text":"Xbox<br>M<br>Frequency: 485","key":["Xbox","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(231,107,243,0.8)","hoveron":"fills","name":"Xbox","legendgroup":"Xbox","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0.777023016736641,1,1,0.777023016736641,0.777023016736641],"text":"Xbox<br>T<br>Frequency: 561","key":["Xbox","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(231,107,243,0.8)","hoveron":"fills","name":"Xbox","legendgroup":"Xbox","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":25.5707762557078},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Mosaic Plot","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.05,1.05],"tickmode":"array","ticktext":["E","E10+","M","T"],"tickvals":[0.148076147977544,0.372196631639557,0.550169857492443,0.83104937383043],"categoryorder":"array","categoryarray":["E","E10+","M","T"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Rating Type","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.05,1.05],"tickmode":"array","ticktext":["Nintendo","Others","PC","Playstation","Xbox"],"tickvals":[0.15101361542256,0.351469358711104,0.424039697948112,0.634018822389431,0.910434867729863],"categoryorder":"array","categoryarray":["Nintendo","Others","PC","Playstation","Xbox"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Platform Type","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Platform.type","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"b20a7c9dc7cd":{"x":{},"fill":{},"y":{},"x__fill__Platform.type":{},"x__Rating":{},"type":"scatter"}},"cur_data":"b20a7c9dc7cd","visdat":{"b20a7c9dc7cd":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-dfb957248938e3fe1d24" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-dfb957248938e3fe1d24">{"x":{"data":[{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0,0.302027230845119,0.302027230845119,0,0],"text":"Nintendo<br>E<br>Frequency: 666","key":["Nintendo","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(248,118,109,0.8)","hoveron":"fills","name":"Nintendo","legendgroup":"Nintendo","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0,0.390438493265526,0.390438493265526,0,0],"text":"Nintendo<br>E10+<br>Frequency: 384","key":["Nintendo","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(248,118,109,0.8)","hoveron":"fills","name":"Nintendo","legendgroup":"Nintendo","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0,0.0645633059247653,0.0645633059247653,0,0],"text":"Nintendo<br>M<br>Frequency: 98","key":["Nintendo","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(248,118,109,0.8)","hoveron":"fills","name":"Nintendo","legendgroup":"Nintendo","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0,0.164152395878373,0.164152395878373,0,0],"text":"Nintendo<br>T<br>Frequency: 413","key":["Nintendo","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(248,118,109,0.8)","hoveron":"fills","name":"Nintendo","legendgroup":"Nintendo","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0.311561856737575,0.391376860684633,0.391376860684633,0.311561856737575,0.311561856737575],"text":"Others<br>E<br>Frequency: 176","key":["Others","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(163,165,0,0.8)","hoveron":"fills","name":"Others","legendgroup":"Others","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0.399973119157982,0.418274923529804,0.418274923529804,0.399973119157982,0.399973119157982],"text":"Others<br>E10+<br>Frequency: 18","key":["Others","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(163,165,0,0.8)","hoveron":"fills","name":"Others","legendgroup":"Others","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0.0740979318172212,0.078709596526133,0.078709596526133,0.0740979318172212,0.0740979318172212],"text":"Others<br>M<br>Frequency: 7","key":["Others","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(163,165,0,0.8)","hoveron":"fills","name":"Others","legendgroup":"Others","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0.173687021770829,0.195150046897783,0.195150046897783,0.173687021770829,0.173687021770829],"text":"Others<br>T<br>Frequency: 54","key":["Others","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(163,165,0,0.8)","hoveron":"fills","name":"Others","legendgroup":"Others","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0.400911486577089,0.447167909319135,0.447167909319135,0.400911486577089,0.400911486577089],"text":"PC<br>E<br>Frequency: 102","key":["PC","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,191,125,0.8)","hoveron":"fills","name":"PC","legendgroup":"PC","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0.427809549422259,0.493899398542726,0.493899398542726,0.427809549422259,0.427809549422259],"text":"PC<br>E10+<br>Frequency: 65","key":["PC","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,191,125,0.8)","hoveron":"fills","name":"PC","legendgroup":"PC","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0.0882442224185889,0.252287724207023,0.252287724207023,0.0882442224185889,0.0882442224185889],"text":"PC<br>M<br>Frequency: 249","key":["PC","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,191,125,0.8)","hoveron":"fills","name":"PC","legendgroup":"PC","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0.204684672790239,0.304447993287749,0.304447993287749,0.204684672790239,0.204684672790239],"text":"PC<br>T<br>Frequency: 251","key":["PC","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,191,125,0.8)","hoveron":"fills","name":"PC","legendgroup":"PC","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0.45670253521159,0.811335109567271,0.811335109567271,0.45670253521159,0.45670253521159],"text":"Playstation<br>E<br>Frequency: 782","key":["Playstation","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,176,246,0.8)","hoveron":"fills","name":"Playstation","legendgroup":"Playstation","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0.503434024435182,0.812531164937057,0.812531164937057,0.503434024435182,0.503434024435182],"text":"Playstation<br>E10+<br>Frequency: 304","key":["Playstation","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,176,246,0.8)","hoveron":"fills","name":"Playstation","legendgroup":"Playstation","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0.261822350099479,0.670942890704369,0.670942890704369,0.261822350099479,0.261822350099479],"text":"Playstation<br>M<br>Frequency: 621","key":["Playstation","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,176,246,0.8)","hoveron":"fills","name":"Playstation","legendgroup":"Playstation","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0.313982619180205,0.767488390844185,0.767488390844185,0.313982619180205,0.313982619180205],"text":"Playstation<br>T<br>Frequency: 1141","key":["Playstation","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(0,176,246,0.8)","hoveron":"fills","name":"Playstation","legendgroup":"Playstation","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0,0,0.296152295955089,0.296152295955089,0],"y":[0.820869735459727,1,1,0.820869735459727,0.820869735459727],"text":"Xbox<br>E<br>Frequency: 395","key":["Xbox","E"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(231,107,243,0.8)","hoveron":"fills","name":"Xbox","legendgroup":"Xbox","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.306152295955089,0.306152295955089,0.438240967324025,0.438240967324025,0.306152295955089],"y":[0.822065790829513,1,1,0.822065790829513,0.822065790829513],"text":"Xbox<br>E10+<br>Frequency: 175","key":["Xbox","E10+"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(231,107,243,0.8)","hoveron":"fills","name":"Xbox","legendgroup":"Xbox","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.448240967324025,0.448240967324025,0.652098747660861,0.652098747660861,0.448240967324025],"y":[0.680477516596825,1,1,0.680477516596825,0.680477516596825],"text":"Xbox<br>M<br>Frequency: 485","key":["Xbox","M"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(231,107,243,0.8)","hoveron":"fills","name":"Xbox","legendgroup":"Xbox","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null},{"x":[0.662098747660861,0.662098747660861,1,1,0.662098747660861],"y":[0.777023016736641,1,1,0.777023016736641,0.777023016736641],"text":"Xbox<br>T<br>Frequency: 561","key":["Xbox","T"],"type":"scatter","mode":"lines","line":{"width":0.377952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(231,107,243,0.8)","hoveron":"fills","name":"Xbox","legendgroup":"Xbox","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","_isSimpleKey":true,"_isNestedKey":false,"frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":25.5707762557078},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Mosaic Plot","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.05,1.05],"tickmode":"array","ticktext":["E","E10+","M","T"],"tickvals":[0.148076147977544,0.372196631639557,0.550169857492443,0.83104937383043],"categoryorder":"array","categoryarray":["E","E10+","M","T"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Rating Type","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.05,1.05],"tickmode":"array","ticktext":["Nintendo","Others","PC","Playstation","Xbox"],"tickvals":[0.15101361542256,0.351469358711104,0.424039697948112,0.634018822389431,0.910434867729863],"categoryorder":"array","categoryarray":["Nintendo","Others","PC","Playstation","Xbox"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":false,"tickfont":{"color":null,"family":null,"size":0},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Platform Type","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"Platform.type","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"c40730510ac7":{"x":{},"fill":{},"y":{},"x__fill__Platform.type":{},"x__Rating":{},"type":"scatter"}},"cur_data":"c40730510ac7","visdat":{"c40730510ac7":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 ```
 ### Genre
 
@@ -764,28 +734,8 @@ st <- game[, sapply(game, class) %in% c('numeric')]
 st <- na.omit(st)
 
 library(ellipse)  
-```
-
-```
-## 
-## Attaching package: 'ellipse'
-```
-
-```
-## The following object is masked from 'package:graphics':
-## 
-##     pairs
-```
-
-```r
 library(corrplot)
-```
 
-```
-## corrplot 0.90 loaded
-```
-
-```r
 corMatrix <- cor(as.matrix(st))  # Correlation matrix
 col <- colorRampPalette(c("#7F0000", "red", "#FF7F00", "yellow", "#7FFF7F",
                           "cyan", "#007FFF", "blue", "#00007F"))
@@ -877,16 +827,8 @@ recete <- recipe(Global_Sales ~ ., train_df) %>%
         
         # Normalize the outcome variable
         step_log(Global_Sales) 
-```
 
-```
-## Warning: `step_knnimpute()` was deprecated in recipes 0.1.16.
-## Please use `step_impute_knn()` instead.
-## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
-```
 
-```r
 recipe_prepped <- prep(recete)
 df_train <- bake(recipe_prepped, new_data = train_df)
 dim(df_train)
@@ -919,41 +861,11 @@ corr_df <- df_train %>% select(is.numeric) %>%
         correlate() %>%
         rearrange() %>% 
         shave()
-```
 
-```
-## Warning: Predicate functions must be wrapped in `where()`.
-## 
-##   # Bad
-##   data %>% select(is.numeric)
-## 
-##   # Good
-##   data %>% select(where(is.numeric))
-## 
-## ℹ Please update your code.
-## This message is displayed once per session.
-```
-
-```
-## 
-## Correlation method: 'pearson'
-## Missing treated using: 'pairwise.complete.obs'
-```
-
-```r
 rplot(corr_df,) +
         theme_minimal() +
         theme(axis.text.x = element_text(angle = 90)) +
         scale_colour_viridis_c()
-```
-
-```
-## Scale for 'colour' is already present. Adding another scale for 'colour',
-## which will replace the existing scale.
-```
-
-```
-## Don't know how to automatically pick scale for object of type noquote. Defaulting to continuous.
 ```
 
 ![](game_sales_descriptive_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
@@ -976,28 +888,8 @@ k_folds <- vfold_cv(train_df)
 
 library(parallel)
 library(doParallel)
-```
 
-```
-## Loading required package: foreach
-```
 
-```
-## 
-## Attaching package: 'foreach'
-```
-
-```
-## The following objects are masked from 'package:purrr':
-## 
-##     accumulate, when
-```
-
-```
-## Loading required package: iterators
-```
-
-```r
 cluster <- makeCluster(detectCores() - 1) # convention to leave 1 core for OS
 registerDoParallel(cluster)
 ```
@@ -1358,7 +1250,7 @@ model_compare %>%   pivot_longer(
 ##    Global_Sales model  prediction
 ##           <dbl> <chr>       <dbl>
 ##  1         17.2 glmnet       14.9
-##  2         17.2 rf           15.2
+##  2         17.2 rf           15.1
 ##  3         17.2 lm           14.9
 ##  4         17.2 xgb          15.8
 ##  5         16.8 glmnet       14.2
@@ -1454,10 +1346,6 @@ rf_grid_search %>%
 ```r
 # show best
 rf_grid_search %>% show_best()
-```
-
-```
-## Warning: No value of `metric` was given; metric 'rmse' will be used.
 ```
 
 ```
@@ -1557,7 +1445,7 @@ overallfit  %>%
 
 4. Among genres, sports games have the leading role in contributing global game sales. T rating is also the most power rating scores explaining the variation. 
 
-5. Finally, our model is fine to predict global game sales with these available features in data set. This model could be improve with further modification, particularly focusing on outliers. 
+5. Finally, our model is fine to predict global game sales with these available features in data set. This model could be improve with further modification, particularly focusing on outliers. Similarly, to include more observation, computing missing variables are aso another method to improve the model. 
 
 
 
