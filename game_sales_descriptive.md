@@ -1,5 +1,3 @@
-
-
 # Data
 
 The data comes from [Kaggle ](https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings#Video_Games_Sales_as_at_22_Dec_2016.csv) that was released in 2016. It is too old to study but there is no such available data that has similar features. For instance, [this one](https://www.kaggle.com/stpeteishii/video-game-sales-predict/data) could be an alternative that released few months ago but its features are not sufficient to build a predictive model.  
